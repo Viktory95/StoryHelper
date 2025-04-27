@@ -3,9 +3,7 @@ spring:
     name: story_helper_back
   data:
     cassandra:
-      contact-points: 127.0.0.1:9042
       keyspace-name: story_helper
-      local-datacenter: datacenter1
 
   kafka:
     bootstrap-servers: localhost:9092

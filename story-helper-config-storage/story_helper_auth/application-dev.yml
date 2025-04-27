@@ -3,9 +3,7 @@ spring:
     name: story_helper_auth
   data:
     cassandra:
-      contact-points: 127.0.0.1:9042
       keyspace-name: story_helper_auth
-      local-datacenter: datacenter1
 
 server:
   port: 8080
