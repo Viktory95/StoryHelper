@@ -1,0 +1,6 @@
+rootProject.name = 'StoryHelper'
+
+include 'StoryHelperConfig'
+include 'StoryHelperAuth'
+include 'StoryHelperBack'
+include 'StoryHelperLog'

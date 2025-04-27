@@ -1,6 +1,6 @@
 spring:
   application:
-    name: story_helper_auth
+    name: story_helper_back
 
 ---
 

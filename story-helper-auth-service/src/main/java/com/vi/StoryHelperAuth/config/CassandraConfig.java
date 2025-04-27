@@ -15,7 +15,6 @@ import org.springframework.data.cassandra.repository.config.EnableCassandraRepos
 import java.time.Duration;
 
 @Configuration
-@PropertySource(value = { "classpath:application-dev.yml" })
 @EnableCassandraRepositories(basePackages = "com.vi.StoryHelperAuth.repository")
 public class CassandraConfig extends AbstractCassandraConfiguration {
 
