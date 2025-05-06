@@ -28,6 +28,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation("org.springframework.cloud:spring-cloud-starter-config:4.2.2")
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '3.4.3'
 	implementation group: 'org.liquibase', name: 'liquibase-core', version: '4.31.1'
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-cache', version: '3.4.3'

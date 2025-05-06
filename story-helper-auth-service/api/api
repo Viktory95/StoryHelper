@@ -1,0 +1,26 @@
+GET http://localhost:8080/story_helper_auth/actuator
+Bearer token
+
+GET http://localhost:8080/story_helper_auth/actuator/health
+Bearer token
+
+POST http://localhost:8080/story_helper_auth/auth/login
+Basic Auth (eg. admin/admin)
+Body
+{
+    "username":"admin",
+    "password":"admin",
+    "authorities": "ROLE_ADMIN"
+}
+
+POST http://localhost:8080/story_helper_auth/auth/register
+No Auth
+Body
+{
+    "username":"test",
+    "password":"test",
+    "authorities": "ROLE_ADMIN"
+}
+
+POST http://localhost:8080/story_helper_auth/token/check?token=&username=
+No Auth

@@ -10,7 +10,6 @@ spring:
           uri: ${GIT_URI:https://github.com/Viktory95/StoryHelperConfigStorage.git}
           username: ${GIT_LOGIN:username}
           password: ${GIT_PASSWORD:password}
-          default-label: main
           search-paths: "{application}"
 
 server:

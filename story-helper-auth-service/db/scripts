@@ -34,7 +34,7 @@ create table user
 
 
 INSERT INTO user (username, password, authorities) VALUES 
-  ('admin', '$2a$10$H2QvKTwSyVvE/yA5dH4cquEaXyK9tCgBBZk6FSVH8v3WfD05zUEzK', 'user&admin');
+  ('admin', '$2a$10$H2QvKTwSyVvE/yA5dH4cquEaXyK9tCgBBZk6FSVH8v3WfD05zUEzK', 'ROLE_ADMIN');
 
 --copy file to docker container
   docker cp C:\Users\cherk\IdeaProjects\Dashboard_kafka\scripts\data\clients.txt dashboard_kafka-kafka-1:/home/clients.txt

@@ -2,7 +2,6 @@ package com.vi.StoryHelperAuth.config;
 
 import com.vi.StoryHelperAuth.filter.JwtAuthenticationFilter;
 import com.vi.StoryHelperAuth.service.UserService;
-import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,10 +22,15 @@ import java.util.List;
 
 @Configuration
 @EnableWebSecurity
-@AllArgsConstructor
 public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
-    private UserService userService;
+    private final UserService userService;
+
+    public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter,
+                          UserService userService) {
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+        this.userService = userService;
+    }
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
