@@ -3,7 +3,7 @@ package com.vi.StoryHelperBack.rest;
 import com.vi.StoryHelperBack.domain.Style;
 import com.vi.StoryHelperBack.repository.StyleRepository;
 import com.vi.StoryHelperBack.service.TokenCheckerService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/style")
 @Slf4j
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class StyleController {
     public final StyleRepository styleRepository;
     public final TokenCheckerService tokenCheckerService;
@@ -26,7 +26,7 @@ public class StyleController {
         if (!tokenIsValid)
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 
-        if(entity.getId() == null)
+        if (entity.getId() == null)
             entity.setId(UUID.randomUUID());
 
         return ResponseEntity.ok(styleRepository.save(entity));

@@ -31,6 +31,9 @@ dependencies {
 	implementation("org.springframework.cloud:spring-cloud-starter-config:4.2.2")
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '3.4.3'
 	implementation group: 'org.liquibase', name: 'liquibase-core', version: '4.31.1'
+	implementation("org.liquibase.ext:liquibase-cassandra:4.31.1.1")
+	implementation("org.springframework.boot:spring-boot-starter-jdbc:3.4.5")
+	implementation("com.ing.data:cassandra-jdbc-wrapper:4.14.0")
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-cache', version: '3.4.3'
 	implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.12.6'
 	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.12.6'

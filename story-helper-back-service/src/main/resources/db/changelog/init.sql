@@ -1,3 +1,4 @@
+USE story_helper;
 CREATE TABLE IF NOT EXISTS story_helper.st_view (
             id uuid PRIMARY KEY,
             name text

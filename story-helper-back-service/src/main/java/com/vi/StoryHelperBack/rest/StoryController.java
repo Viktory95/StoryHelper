@@ -5,7 +5,7 @@ import com.vi.StoryHelperBack.domain.Log;
 import com.vi.StoryHelperBack.domain.Story;
 import com.vi.StoryHelperBack.repository.StoryRepository;
 import com.vi.StoryHelperBack.service.TokenCheckerService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/story")
 @Slf4j
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class StoryController {
     public final StoryRepository storyRepository;
     private KafkaTemplate<String, Log> kafkaTemplate;

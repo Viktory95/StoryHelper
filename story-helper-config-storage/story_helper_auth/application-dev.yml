@@ -4,6 +4,16 @@ spring:
   data:
     cassandra:
       keyspace-name: story_helper_auth
+  liquibase:
+    enabled: true
+    url: jdbc:cassandra://127.0.0.1:9042/story_helper_auth?compliancemode=Liquibase&localdatacenter=datacenter1
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+    driver-class-name: com.ing.data.cassandra.jdbc.CassandraDriver
+  datasource:
+    url: jdbc:cassandra://127.0.0.1:9042/story_helper_auth?compliancemode=Liquibase&localdatacenter=datacenter1
+    driver-class-name: com.ing.data.cassandra.jdbc.CassandraDriver
+    hikari:
+      minimum-idle: 1
 
 server:
   port: 8080

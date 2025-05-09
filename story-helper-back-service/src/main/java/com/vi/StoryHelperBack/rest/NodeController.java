@@ -5,7 +5,7 @@ import com.vi.StoryHelperBack.domain.Log;
 import com.vi.StoryHelperBack.domain.Node;
 import com.vi.StoryHelperBack.repository.NodeRepository;
 import com.vi.StoryHelperBack.service.TokenCheckerService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/node")
 @Slf4j
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class NodeController {
     public final NodeRepository nodeRepository;
     public final TokenCheckerService tokenCheckerService;

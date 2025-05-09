@@ -4,6 +4,7 @@ import com.vi.StoryHelperLog.config.properties.KafkaTopicProperties;
 import com.vi.StoryHelperLog.domain.Log;
 import com.vi.StoryHelperLog.repository.LogRepository;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class KafkaMessageListener {
 
     private final LogRepository logRepository;
