@@ -34,3 +34,4 @@ out/
 
 ### VS Code ###
 .vscode/
+/story-helper-ui-service/node_modules/
