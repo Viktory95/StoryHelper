@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Modal from 'react-modal'
 
-const FlagEdit = (props) => {
+const StoryAdd = (props) => {
     const [modalIsOpen, setIsOpen] = useState(false)
 
     const openModal = () => {
@@ -13,25 +13,24 @@ const FlagEdit = (props) => {
     }
 
     const submit = (data) => {
-        //TODO: rest edit request
+        //TODO: rest add request
         closeModal()
         props.reload()
     }
 
     return (
-        <div id={'flag-edit-' + props.flag.id}>
-            <button onClick={openModal}>Edit</button>
+        <div id={'story-add'}>
+            <button onClick={openModal}>Add</button>
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
-                contentLabel='Edit Flag'
+                contentLabel='Add Story'
             >
                 <button onClick={closeModal}>Close</button>
                 <form action={submit}>
-                    <input name={'icon'}
-                           defaultValue={props.flag.icon}/>
-                    <input name={'placeholder'}
-                           defaultValue={props.flag.placeholder}/>
+                    <input name={'name'}/>
+                    <input name={'textt'}/>
+                    <input name={'description'}/>
                     <button type='submit'>Submit</button>
                 </form>
               </Modal>
@@ -39,4 +38,4 @@ const FlagEdit = (props) => {
     )
 }
 
-export default FlagEdit
+export default StoryAdd

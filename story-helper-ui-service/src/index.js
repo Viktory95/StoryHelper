@@ -1,11 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-
-function App() {
-    return (
-        <p>Test</p>
-    )
-}
+import StoryHelper from './story-helper'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
-root.render(<App />)
+root.render(<StoryHelper />)
