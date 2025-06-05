@@ -1,42 +1,60 @@
-import React, {useEffect, useRef} from 'react'
+import React, {useEffect, useRef, useState, useCallback} from 'react'
+import { ReactFlow, useNodesState, useEdgesState, addEdge } from '@xyflow/react'
+
+import '@xyflow/react/dist/style.css'
+
+const menuStyle = {position: 'absolute', zIndex: 100000}
 
 const Diagram = () => {
-      const canvasRef = useRef(null)
+      const [menu, setMenu] = useState(false)
+      const [nodes, setNodes, onNodesChange] = useNodesState([])
+      const [edges, setEdges, onEdgesChange] = useEdgesState([])
 
       useEffect(() => {
-        const canvas = canvasRef.current
-        const context = canvas.getContext('2d')
-        context.fillStyle = 'lightblue';
-            context.fillRect(50, 50, 100, 50);
+        document.addEventListener('contextmenu', (event) => {
+            event.preventDefault()
+            setMenu(true)
+        })
 
-            context.beginPath();
-            context.arc(250, 100, 30, 0, 2 * Math.PI);
-            context.fillStyle = 'lightgreen';
-            context.fill();
-            context.stroke();
-
-            context.moveTo(150, 100);
-            context.lineTo(220, 100);
-            context.stroke();
-
-            context.font = '16px Arial';
-            context.fillStyle = 'black';
-            context.fillText('Box', 70, 80);
-            context.fillText('Circle', 230, 105);
-
-            canvas.addEventListener('click', (event) => {
-        console.log('-----------')
-                });
+        document.addEventListener('click', function(event){
+            setMenu(false)
+        })
       }, [])
 
-      const animate = () => {
-            // Update drawing
-            requestAnimationFrame(animate);
-          };
+      const onConnect = useCallback(
+        (params) => setEdges((eds) => addEdge(params, eds)),
+        [setEdges],
+      )
 
-      animate();
+      const contextMenu = () => {
+        return (<>
+            {menu && <div id='context-menu' key='context-menu' style={menuStyle}>
+                             <a onClick={addNode.bind(this)}>add node</a>
+                             <a>add flag</a>
+                             <a>add character</a>
+                     </div>}
+        </>)
+      }
 
-      return <canvas ref={canvasRef} width={500} height={300} />
+      const addNode = () => {
+        console.log('----')
+        let nds = nodes.slice()
+        nds.push({ id: '1', position: { x: 0, y: 0 }, data: { label: '1' } })
+        setNodes(nds)
+      }
+
+      return <>
+          {contextMenu()}
+          <div style={{ width: '100vw', height: '100vh' }}>
+                <ReactFlow
+                  nodes={nodes}
+                  edges={edges}
+                  onNodesChange={onNodesChange}
+                  onEdgesChange={onEdgesChange}
+                  onConnect={onConnect}
+                />
+          </div>
+      </>
 }
 
 export default Diagram

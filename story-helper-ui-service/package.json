@@ -33,7 +33,8 @@
     "@babel/core": "^7.27.1",
     "@babel/preset-react": "^7.27.1",
     "babel-loader": "^10.0.0",
-    "electron": "^36.2.1"
+    "electron": "^36.2.1",
+    "@xyflow/react": "12.6.4"
   },
   "dependencies": {
     "react": "^19.1.0",
