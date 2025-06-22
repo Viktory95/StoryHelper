@@ -23,4 +23,5 @@ public class Character {
     private String features;
     private String characterDescription;
     private int importanceRate;
+    private boolean isDeleted;
 }

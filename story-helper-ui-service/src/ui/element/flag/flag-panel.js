@@ -8,14 +8,28 @@ const FlagPanel = () => {
 
     useEffect(() => {
         if(!loaded) {
-            //TODO: add rest request
-            setFlags([{id: 1, icon: "test"}])
-            setLoaded(true)
-        }
+                    axios.get(localStorage.getItem('addresses-flag'), {
+                                    params: {
+                                      token: localStorage.getItem('token'),
+                                      username: localStorage.getItem('username'),
+                                      ids: props.flags
+                                    }
+                                  })
+                                  .then(function (response) {
+                                    setFlags(response.data)
+                                  })
+                                  .catch(function (error) {
+                                    console.error(error);
+                                  })
+                                  .finally(function () {
+                                    setLoaded(true)
+                                  })
+                }
     }, [flags])
 
     const reload = () => {
-        //TODO: reload data
+        setFlags([])
+        setLoaded(false)
     }
 
     if(!loaded)
@@ -24,10 +38,12 @@ const FlagPanel = () => {
     return (
         <div>
             <div>Flags</div>
-            <FlagAdd reload={reload.bind(this)}/>
+            <FlagAdd nodeId={props.nodeId}
+                     reload={reload.bind(this)}/>
             <>
                 {flags.map(flag => {
                     return <FlagView flag={flag}
+                                     nodeId={props.nodeId}
                                      reload={reload.bind(this)}/>
                 })}
             </>

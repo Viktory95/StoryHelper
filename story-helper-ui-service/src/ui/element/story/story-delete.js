@@ -13,9 +13,23 @@ const StoryDelete = (props) => {
     }
 
     const submit = () => {
-        //TODO: rest delete request
-        closeModal()
-        props.reload()
+        axios.delete(localStorage.getItem('addresses-story'),
+                        {
+                            params: {
+                                token: localStorage.getItem('token'),
+                                username: localStorage.getItem('username'),
+                                id: props.story.id
+                            }
+                        })
+                        .then(function (response) {
+                        })
+                        .catch(function (error) {
+                            console.error(error);
+                        })
+                        .finally(function () {
+                            closeModal()
+                            props.reload()
+                        })
     }
 
     return (

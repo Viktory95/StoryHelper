@@ -22,4 +22,9 @@ public class Node {
     private String description;
     private List<UUID> nPrev;
     private List<UUID> nNext;
+    private boolean isDeleted;
+
+    public void addFlag(UUID flag) {
+        flags.add(flag);
+    }
 }

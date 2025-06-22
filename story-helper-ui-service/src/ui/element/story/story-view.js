@@ -3,7 +3,6 @@ import StoryEdit from './story-edit'
 import StoryDelete from './story-delete'
 import CharacterPanel from '../character/character-panel'
 import NodePanel from '../node/node-panel'
-import FlagPanel from '../flag/flag-panel'
 
 const StoryView = (props) => {
 //TODO: add placeholder with info about story
@@ -19,9 +18,10 @@ const StoryView = (props) => {
                        reload={reload.bind(this)}/>
             <StoryDelete id={props.story.id}
                          reload={reload.bind(this)}/>
-            <CharacterPanel id={props.story.id}/>
-            <NodePanel id={props.story.id}/>
-            <FlagPanel id={props.story.id}/>
+            <CharacterPanel storyId={props.story.id}
+                            characters={props.story.characters}/>
+            <NodePanel storyId={props.story.id}
+                       nodes={props.story.nodes}/>
         </div>
     )
 }

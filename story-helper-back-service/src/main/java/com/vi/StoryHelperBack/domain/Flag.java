@@ -17,4 +17,5 @@ public class Flag {
     private UUID id;
     private String icon;
     private String placeholder;
+    private boolean isDeleted;
 }

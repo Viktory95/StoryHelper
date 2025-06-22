@@ -13,6 +13,7 @@ const FlagView = (props) => {
         <div>
             <div>{props.flag.icon}</div>
             <FlagEdit flag={props.flag}
+                      nodeId={props.nodeId}
                       reload={reload.bind(this)}/>
             <FlagDelete id={props.flag.id}
                         reload={reload.bind(this)}/>

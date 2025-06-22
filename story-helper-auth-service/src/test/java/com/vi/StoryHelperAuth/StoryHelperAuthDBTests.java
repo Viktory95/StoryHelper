@@ -24,7 +24,7 @@ public class StoryHelperAuthDBTests {
         Assertions.assertThat(userRepository.save(User.builder()
                 .username("test")
                 .password(new BCryptPasswordEncoder().encode("test"))
-                .authorities("user")
+                .authorities("ROLE_USER")
                 .build())).isNotNull();
     }
 

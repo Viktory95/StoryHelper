@@ -1,8 +1,6 @@
 import React, {useEffect, useRef, useState, useCallback} from 'react'
 import { ReactFlow, useNodesState, useEdgesState, addEdge } from '@xyflow/react'
 
-import '@xyflow/react/dist/style.css'
-
 const menuStyle = {position: 'absolute', zIndex: 100000}
 
 const Diagram = () => {
@@ -37,9 +35,9 @@ const Diagram = () => {
       }
 
       const addNode = () => {
-        console.log('----')
         let nds = nodes.slice()
         nds.push({ id: '1', position: { x: 0, y: 0 }, data: { label: '1' } })
+        nds.push({ id: '2', position: { x: 10, y: 10 }, data: { label: '2' } })
         setNodes(nds)
       }
 

@@ -24,4 +24,30 @@ public class Story {
     private UUID stView;
     private String stUser;
     private boolean isPublic;
+    private String fullText;
+    private boolean isDeleted;
+
+    public void addCharacter(UUID character) {
+        characters.add(character);
+    }
+
+    public void addGenre(UUID genre) {
+        genres.add(genre);
+    }
+
+    public void addNode(UUID node) {
+        nodes.add(node);
+    }
+
+    public void removeCharacter(UUID character) {
+        characters.remove(character);
+    }
+
+    public void removeGenre(UUID genre) {
+        genres.remove(genre);
+    }
+
+    public void removeNode(UUID node) {
+        nodes.remove(node);
+    }
 }

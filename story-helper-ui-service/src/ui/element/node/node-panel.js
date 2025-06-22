@@ -8,14 +8,28 @@ const NodePanel = () => {
 
     useEffect(() => {
         if(!loaded) {
-            //TODO: add rest request
-            setNodes([{id: 1, name: "test"}])
-            setLoaded(true)
+            axios.get(localStorage.getItem('addresses-node'), {
+                            params: {
+                              token: localStorage.getItem('token'),
+                              username: localStorage.getItem('username'),
+                              ids: props.nodes
+                            }
+                          })
+                          .then(function (response) {
+                            setNodes(response.data)
+                          })
+                          .catch(function (error) {
+                            console.error(error);
+                          })
+                          .finally(function () {
+                            setLoaded(true)
+                          })
         }
     }, [nodes])
 
     const reload = () => {
-        //TODO: reload data
+        setNodes([])
+        setLoaded(false)
     }
 
     if(!loaded)
@@ -24,10 +38,12 @@ const NodePanel = () => {
     return (
         <div>
             <div>Nodes</div>
-            <NodeAdd reload={reload.bind(this)}/>
+            <NodeAdd storyId={props.storyId}
+                     reload={reload.bind(this)}/>
             <>
                 {nodes.map(node => {
                     return <NodeView node={node}
+                                     storyId={props.storyId}
                                      reload={reload.bind(this)}/>
                 })}
             </>

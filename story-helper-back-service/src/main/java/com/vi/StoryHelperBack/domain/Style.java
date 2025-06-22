@@ -17,4 +17,5 @@ public class Style {
     private UUID id;
     private String book;
     private String author;
+    private boolean isDeleted;
 }

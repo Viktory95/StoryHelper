@@ -13,13 +13,27 @@ const NodeDelete = (props) => {
     }
 
     const submit = () => {
-        //TODO: rest delete request
-        closeModal()
-        props.reload()
+        axios.delete(localStorage.getItem('addresses-node'),
+                        {
+                            params: {
+                                token: localStorage.getItem('token'),
+                                username: localStorage.getItem('username'),
+                                id: props.id
+                            }
+                        })
+                        .then(function (response) {
+                        })
+                        .catch(function (error) {
+                            console.error(error);
+                        })
+                        .finally(function () {
+                            closeModal()
+                            props.reload()
+                        })
     }
 
     return (
-        <div id={'node-delete'}>
+        <div id={'node-delete-' + props.id}>
             <button onClick={openModal}>Delete</button>
             <Modal
                 isOpen={modalIsOpen}

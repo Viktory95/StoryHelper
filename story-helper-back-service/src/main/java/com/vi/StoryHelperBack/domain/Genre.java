@@ -17,4 +17,5 @@ public class Genre {
     private UUID id;
     private String name;
     private String description;
+    private boolean isDeleted;
 }

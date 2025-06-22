@@ -14,6 +14,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -21,9 +22,9 @@ import java.util.UUID;
 @Slf4j
 @RequiredArgsConstructor
 public class StoryController {
-    public final StoryRepository storyRepository;
+    private final StoryRepository storyRepository;
     private KafkaTemplate<String, Log> kafkaTemplate;
-    public final TokenCheckerService tokenCheckerService;
+    private final TokenCheckerService tokenCheckerService;
 
     @Value("${spring.topics.logs-topic}")
     private String kafkaTopicName;
@@ -52,12 +53,22 @@ public class StoryController {
         if (!tokenIsValid)
             throw new RuntimeException("Token is not valid.");
 
-        storyRepository.findById(id)
+        Story story = storyRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Story not found with id : " + id));
-        storyRepository.deleteById(id);
+        story.setDeleted(true);
+        storyRepository.save(story);
 
         kafkaTemplate.send(kafkaTopicName, new Log(UUID.randomUUID(), Action.DELETE_STORY, username, LocalDateTime.now(), "story", id));
 
         return ResponseEntity.ok("Story was deleted successfully!");
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Story>> findAll(@RequestParam("token") String token, @RequestParam("username") String username) {
+        boolean tokenIsValid = tokenCheckerService.checkToken(token, username);
+        if (!tokenIsValid)
+            throw new RuntimeException("Token is not valid.");
+
+        return ResponseEntity.ok(storyRepository.findAllByStUserAndIsDeleted(username, false));
     }
 }

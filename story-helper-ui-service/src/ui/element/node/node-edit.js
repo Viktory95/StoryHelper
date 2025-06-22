@@ -13,9 +13,31 @@ const NodeEdit = (props) => {
     }
 
     const submit = (data) => {
-        //TODO: rest edit request
-        closeModal()
-        props.reload()
+        axios.post(localStorage.getItem('addresses-node'),
+                        {
+                            id: props.node.id,
+                            name: data.name,
+                            textt: data.textt,
+                            description: data.description,
+                            isDeleted: false
+                        },
+                        {
+                            params: {
+                                token: localStorage.getItem('token'),
+                                username: localStorage.getItem('username'),
+                                storyId: props.storyId
+                            }
+                        })
+                        .then(function (response) {
+
+                        })
+                        .catch(function (error) {
+                            console.error(error);
+                        })
+                        .finally(function () {
+                            closeModal()
+                            props.reload()
+                        })
     }
 
     return (

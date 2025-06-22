@@ -13,9 +13,31 @@ const NodeAdd = (props) => {
     }
 
     const submit = (data) => {
-        //TODO: rest add request
-        closeModal()
-        props.reload()
+        axios.post(localStorage.getItem('addresses-node'),
+                        {
+                            id: null,
+                            name: data.name,
+                            textt: data.textt,
+                            birthday: data.description,
+                            isDeleted: false
+                        },
+                        {
+                            params: {
+                                token: localStorage.getItem('token'),
+                                username: localStorage.getItem('username'),
+                                storyId: props.storyId
+                            }
+                        })
+                        .then(function (response) {
+
+                        })
+                        .catch(function (error) {
+                            console.error(error);
+                        })
+                        .finally(function () {
+                            closeModal()
+                            props.reload()
+                        })
     }
 
     return (

@@ -16,4 +16,5 @@ public class View {
     @PrimaryKey
     private UUID id;
     private String name;
+    private boolean isDeleted;
 }

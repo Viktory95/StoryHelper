@@ -1,12 +1,14 @@
 USE story_helper;
 CREATE TABLE IF NOT EXISTS story_helper.st_view (
             id uuid PRIMARY KEY,
-            name text
+            name text,
+            isDeleted boolean
             );
 CREATE TABLE IF NOT EXISTS story_helper.style (
             id uuid PRIMARY KEY,
             book text,
-            author text
+            author text,
+            isDeleted boolean
             );
             CREATE TABLE IF NOT EXISTS story_helper.story (
             id uuid PRIMARY KEY,
@@ -17,7 +19,9 @@ CREATE TABLE IF NOT EXISTS story_helper.style (
             style uuid,
             stView uuid,
             stUser text,
-            isPublic boolean
+            fullText text,
+            isPublic boolean,
+            isDeleted boolean
             );
             CREATE TABLE IF NOT EXISTS story_helper.node (
             id uuid PRIMARY KEY,
@@ -26,7 +30,8 @@ CREATE TABLE IF NOT EXISTS story_helper.style (
             flags list<uuid>,
             description text,
             nPrev list<uuid>,
-            nNext list<uuid>
+            nNext list<uuid>,
+            isDeleted boolean
             );
             CREATE TABLE IF NOT EXISTS story_helper.log (
             id uuid PRIMARY KEY,
@@ -39,12 +44,14 @@ CREATE TABLE IF NOT EXISTS story_helper.style (
             CREATE TABLE IF NOT EXISTS story_helper.genre (
             id uuid PRIMARY KEY,
             name text,
-            description text
+            description text,
+            isDeleted boolean
             );
             CREATE TABLE IF NOT EXISTS story_helper.flag (
             id uuid PRIMARY KEY,
             icon text,
-            placeholder text
+            placeholder text,
+            isDeleted boolean
             );
             CREATE TABLE IF NOT EXISTS story_helper.character (
             id uuid PRIMARY KEY,
@@ -54,5 +61,6 @@ CREATE TABLE IF NOT EXISTS story_helper.style (
             appearance text,
             features text,
             characterDescription text,
-            importanceRate int
+            importanceRate int,
+            isDeleted boolean
             );

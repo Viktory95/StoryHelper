@@ -13,9 +13,35 @@ const StoryAdd = (props) => {
     }
 
     const submit = (data) => {
-        //TODO: rest add request
-        closeModal()
-        props.reload()
+        axios.post(localStorage.getItem('addresses-story'),
+        {
+            id: null,
+            name: data.name,
+            genres: data.genres,
+            characters: [],
+            nodes: [],
+            style: data.style,
+            stView: data.stView,
+            stUser: localStorage.getItem('username'),
+            isPublic: true,
+            isDeleted: false
+        },
+        {
+            params: {
+                token: localStorage.getItem('token'),
+                username: localStorage.getItem('username')
+            }
+        })
+        .then(function (response) {
+
+        })
+        .catch(function (error) {
+            console.error(error);
+        })
+        .finally(function () {
+            closeModal()
+            props.reload()
+        })
     }
 
     return (
@@ -29,8 +55,9 @@ const StoryAdd = (props) => {
                 <button onClick={closeModal}>Close</button>
                 <form action={submit}>
                     <input name={'name'}/>
-                    <input name={'textt'}/>
-                    <input name={'description'}/>
+                    <input name={'genres'}/>
+                    <input name={'style'}/>
+                    <input name={'stView'}/>
                     <button type='submit'>Submit</button>
                 </form>
               </Modal>

@@ -16,8 +16,8 @@ import java.util.UUID;
 @Slf4j
 @RequiredArgsConstructor
 public class ViewController {
-    public final ViewRepository viewRepository;
-    public final TokenCheckerService tokenCheckerService;
+    private final ViewRepository viewRepository;
+    private final TokenCheckerService tokenCheckerService;
 
     //create or update
     @PutMapping
@@ -38,10 +38,11 @@ public class ViewController {
         if (!tokenIsValid)
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 
-        viewRepository.findById(id)
+        View view = viewRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("View not found with id : " + id));
+        view.setDeleted(true);
+        viewRepository.save(view);
 
-        viewRepository.deleteById(id);
         return ResponseEntity.ok("View was deleted successfully!");
     }
 }

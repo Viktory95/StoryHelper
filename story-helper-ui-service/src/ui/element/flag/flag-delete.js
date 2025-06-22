@@ -13,13 +13,27 @@ const FlagDelete = (props) => {
     }
 
     const submit = () => {
-        //TODO: rest delete request
-        closeModal()
-        props.reload()
+        axios.delete(localStorage.getItem('addresses-flag'),
+                        {
+                            params: {
+                                token: localStorage.getItem('token'),
+                                username: localStorage.getItem('username'),
+                                id: props.id
+                            }
+                        })
+                        .then(function (response) {
+                        })
+                        .catch(function (error) {
+                            console.error(error);
+                        })
+                        .finally(function () {
+                            closeModal()
+                            props.reload()
+                        })
     }
 
     return (
-        <div id={'flag-delete'}>
+        <div id={'flag-delete-' + props.id}>
             <button onClick={openModal}>Delete</button>
             <Modal
                 isOpen={modalIsOpen}

@@ -8,14 +8,28 @@ const CharacterPanel = () => {
 
     useEffect(() => {
         if(!loaded) {
-            //TODO: add rest request
-            setCharacters([{id: 1, name: "test"}])
-            setLoaded(true)
+            axios.get(localStorage.getItem('addresses-character'), {
+                            params: {
+                              token: localStorage.getItem('token'),
+                              username: localStorage.getItem('username'),
+                              ids: props.characters
+                            }
+                          })
+                          .then(function (response) {
+                            setCharacters(response.data)
+                          })
+                          .catch(function (error) {
+                            console.error(error);
+                          })
+                          .finally(function () {
+                            setLoaded(true)
+                          })
         }
     }, [characters])
 
     const reload = () => {
-        //TODO: reload data
+        setCharacters([])
+        setLoaded(false)
     }
 
     if(!loaded)
@@ -24,10 +38,12 @@ const CharacterPanel = () => {
     return (
         <div>
             <div>Characters</div>
-            <CharacterAdd reload={reload.bind(this)}/>
+            <CharacterAdd storyId={props.storyId}
+                          reload={reload.bind(this)}/>
             <>
                 {characters.map(character => {
                     return <CharacterView character={character}
+                                          storyId={props.storyId}
                                           reload={reload.bind(this)}/>
                 })}
             </>

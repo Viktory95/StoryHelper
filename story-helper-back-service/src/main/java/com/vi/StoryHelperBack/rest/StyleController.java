@@ -16,8 +16,8 @@ import java.util.UUID;
 @Slf4j
 @RequiredArgsConstructor
 public class StyleController {
-    public final StyleRepository styleRepository;
-    public final TokenCheckerService tokenCheckerService;
+    private final StyleRepository styleRepository;
+    private final TokenCheckerService tokenCheckerService;
 
     //create or update
     @PutMapping
@@ -38,10 +38,11 @@ public class StyleController {
         if (!tokenIsValid)
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 
-        styleRepository.findById(id)
+        Style style = styleRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Style not found with id : " + id));
+        style.setDeleted(true);
+        styleRepository.save(style);
 
-        styleRepository.deleteById(id);
         return ResponseEntity.ok("Style was deleted successfully!");
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -43,5 +44,14 @@ public class LogController {
 
         logRepository.deleteById(id);
         return ResponseEntity.ok("Log was deleted successfully!");
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Log>> findAll(@RequestParam("token") String token, @RequestParam("username") String username) {
+        boolean tokenIsValid = tokenCheckerService.checkToken(token, username);
+        if (!tokenIsValid)
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+
+        return ResponseEntity.ok(logRepository.findAll());
     }
 }

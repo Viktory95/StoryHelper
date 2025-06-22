@@ -13,9 +13,35 @@ const StoryEdit = (props) => {
     }
 
     const submit = (data) => {
-        //TODO: rest edit request
-        closeModal()
-        props.reload()
+        axios.post(localStorage.getItem('addresses-story'),
+                {
+                    id: props.story.id,
+                    name: data.name,
+                    genres: data.genres,
+                    characters: [],
+                    nodes: [],
+                    style: data.style,
+                    stView: data.stView,
+                    stUser: localStorage.getItem('username'),
+                    isPublic: true
+                    isDeleted: false
+                },
+                {
+                    params: {
+                        token: localStorage.getItem('token'),
+                        username: localStorage.getItem('username')
+                    }
+                })
+                .then(function (response) {
+
+                })
+                .catch(function (error) {
+                    console.error(error);
+                })
+                .finally(function () {
+                    closeModal()
+                    props.reload()
+                })
     }
 
     return (
@@ -30,10 +56,12 @@ const StoryEdit = (props) => {
                 <form action={submit}>
                     <input name={'name'}
                            defaultValue={props.story.name}/>
-                    <input name={'textt'}
-                           defaultValue={props.story.textt}/>
-                    <input name={'description'}
-                           defaultValue={props.story.description}/>
+                    <input name={'genres'}
+                           defaultValue={props.story.genres}/>
+                    <input name={'style'}
+                           defaultValue={props.story.style}/>
+                    <input name={'stView'}
+                           defaultValue={props.story.stView}/>
                     <button type='submit'>Submit</button>
                 </form>
               </Modal>

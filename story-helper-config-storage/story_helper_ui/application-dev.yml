@@ -1,0 +1,13 @@
+addresses:
+  login: http://localhost:8080/story_helper_auth/login
+  register: http://localhost:8080/story_helper_auth/register
+  tokenCheck: http://localhost:8080/story_helper_auth/token/check
+  character: http://localhost:8090/story_helper_back/api/v1/character
+  flag: http://localhost:8090/story_helper_back/api/v1/flag
+  genre: http://localhost:8090/story_helper_back/api/v1/genre
+  node: http://localhost:8090/story_helper_back/api/v1/node
+  story: http://localhost:8090/story_helper_back/api/v1/story
+  style: http://localhost:8090/story_helper_back/api/v1/style
+  view: http://localhost:8090/story_helper_back/api/v1/view
+  log: http://localhost:8070/story_helper_log/api/v1/log
+

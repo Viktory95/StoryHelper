@@ -1,0 +1,4 @@
+{
+  "app": "story_helper_ui",
+  "configServer": "http://localhost:8888"
+}

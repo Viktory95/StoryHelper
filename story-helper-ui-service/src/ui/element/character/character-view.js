@@ -13,9 +13,10 @@ const CharacterView = (props) => {
         <div>
             <div>{props.character.name}</div>
             <CharacterEdit character={props.character}
-                                      reload={reload.bind(this)}/>
+                           storyId={props.storyId}
+                           reload={reload.bind(this)}/>
             <CharacterDelete id={props.character.id}
-                                      reload={reload.bind(this)}/>
+                             reload={reload.bind(this)}/>
         </div>
     )
 }

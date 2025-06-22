@@ -13,9 +13,35 @@ const CharacterAdd = (props) => {
     }
 
     const submit = (data) => {
-        //TODO: rest add request
-        closeModal()
-        props.reload()
+        axios.post(localStorage.getItem('addresses-character'),
+                {
+                    id: null,
+                    name: data.name,
+                    gender: data.gender,
+                    birthday: data.birthday,
+                    appearance: data.appearance,
+                    features: data.features,
+                    characterDescription: data.characterDescription,
+                    importanceRate: data.importanceRate,
+                    isDeleted: false
+                },
+                {
+                    params: {
+                        token: localStorage.getItem('token'),
+                        username: localStorage.getItem('username'),
+                        storyId: props.storyId
+                    }
+                })
+                .then(function (response) {
+
+                })
+                .catch(function (error) {
+                    console.error(error);
+                })
+                .finally(function () {
+                    closeModal()
+                    props.reload()
+                })
     }
 
     return (
